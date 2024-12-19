@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skin Disease Analysis Prediction Model</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <style>
+      /* You can keep general styles here for the rest of the page */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #74ebd5, #9face6);
+        color: #333;
+        min-height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 80px);
+        margin-top: 80px;
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="file"] {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      img#output {
+        display: block;
+        margin: 10px auto;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+      }
+
+      button {
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background: #45a049;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-width: 600px) {
+        form {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Include the navigation bar -->
+    {% include 'nav.html' %}
+
+    <div class="container">
+      <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="file">Upload Skin Image:</label>
+        <input
+          type="file"
+          name="file"
+          id="file"
+          accept="image/*"
+          onchange="previewImage(event)"
+          required
+          aria-describedby="fileHelp"
+        />
+        <small id="fileHelp" class="form-text text-muted"
+          >Accepted formats: .jpg, .jpeg, .png</small
+        >
+        <img id="output" width="300" alt="Image preview will appear here" />
+        <button type="submit">Analyze</button>
+      </form>
+    </div>
+
+    <script>
+      function previewImage(event) {
+        const output = document.getElementById("output");
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+          URL.revokeObjectURL(output.src); // Free memory
+        };
+      }
+    </script>
+  </body>
+</html>

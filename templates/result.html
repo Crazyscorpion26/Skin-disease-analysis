@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Analysis - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+
+            margin-top:80px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            max-width: 90%;
+            height: auto;
+        }
+
+        .content {
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* margin: 20px auto; */
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .treatment {
+            margin-top:20px;
+            background: #fef6e4;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <h1>Skin Disease Analysis Result</h1>
+
+    <div class="content">
+        <h2>Disease: {{ disease_name }}</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; margin-top: 0.1px;">
+            <img src="{{ url_for('static', filename='uploads/' + image_filename) }}" width="300" alt="Uploaded image" />
+        <p><strong>Description:</strong> {{ description }}</p>
+    </div>
+    <p>Prediction: <strong>{{ prediction }}</strong></p>
+        <p>Confidence: <strong>{{ confidence }}</strong></p>
+        
+
+    <div class="treatment">
+        <h3>Treatment Options</h3>
+        <p>{{ treatment }}</p>
+    </div>
+
+    <div class="content">
+        <h3>First Action</h3>
+        <p>{{ first_action }}</p>
+    </div>
+
+    <a href="{{ url_for('index') }}">Analyze Another Image</a>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!-- nav.html -->
+<style>
+  nav {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding-right: 50px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+  }
+
+  nav .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  nav .logo span {
+    font-size: 1.5rem; /* Increased size for better visibility */
+    font-weight: bold;
+  }
+
+  nav .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  nav .user-info span {
+    margin-right: 20px; /* Adjust spacing between username and logout button */
+    font-size: 1rem; /* Adjust the font size to match the design */
+  }
+
+  nav .logout-button {
+    background: #f44336;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  nav .logout-button:hover {
+    background: #e53935;
+  }
+
+  nav .user-info {
+    display: flex;
+    justify-content: center; /* Center the user info */
+    gap: 15px; /* Adds space between user info elements */
+  }
+
+  /* Focus states for better accessibility */
+  nav .logout-button:focus {
+    outline: 2px solid #4caf50;
+  }
+</style>
+
+<nav>
+  <div class="logo">
+    <span>Skin Disease Analysis</span>
+  </div>
+  <div class="user-info">
+    <span>{{ session['user_id'] }}</span>
+    <button class="logout-button" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<script>
+  function logout() {
+    alert("Logging out...");
+    window.location.href = "/login"; // Example logout redirect
+  }
+</script>

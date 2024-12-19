@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #6dd5ed, #2193b0);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      h2 {
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Form Container */
+      form {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+      }
+
+      /* Form Input Fields */
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: #333;
+        text-align: left;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        background-color: #f9f9f9;
+      }
+
+      input:focus {
+        border-color: #4caf50;
+        outline: none;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+      }
+
+      /* Submit Button */
+      button {
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 100%;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #45a049, #388e3c);
+      }
+
+      /* Popup Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 300px;
+        font-size: 1.1rem;
+      }
+
+      .modal-content button {
+        background: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+
+      .modal-content button:hover {
+        background: #388e3c;
+      }
+
+      /* Additional Details */
+      .form-footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .form-footer a {
+        color: #2193b0;
+        text-decoration: none;
+      }
+
+      .form-footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>Welcome Back!</h2>
+
+      <!-- If user is logged in, show welcome message, else show the login form -->
+      {% if session.get('user_email') %}
+        <p>Welcome, {{ session['user_email'] }}!</p>
+        <!-- You can include additional user-specific content here -->
+        <form method="POST">
+          <div>
+            <p>You are already logged in. You can proceed to the dashboard or log out.</p>
+            <a href="/dashboard">Go to Dashboard</a> |
+            <a href="/logout">Logout</a>
+          </div>
+        </form>
+      {% else %}
+        <!-- If not logged in, show login form -->
+        <form method="POST" onsubmit="handleLogin(event)">
+          {{ form.hidden_tag() }}
+          <div>{{ form.username.label }} {{ form.username }}</div>
+          <div>{{ form.password.label }} {{ form.password }}</div>
+          <div>{{ form.submit(class="btn") }}</div>
+          <div class="form-footer">
+            Don't have an account? <a href="/signup">Sign up</a>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <p>Login Successful!</p>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      // Show the modal on successful login
+      function handleLogin(event) {
+        // event.preventDefault(); // Prevent form submission for demo
+        const isLoginSuccessful = true; // Simulate login success
+
+        if (isLoginSuccessful) {
+          const modal = document.getElementById("successModal");
+          modal.style.display = "flex"; // Show the modal using 'flex'
+        }
+      }
+
+      // Close the modal and redirect
+      function closeModal() {
+        const modal = document.getElementById("successModal");
+
+        // Wait for 2 seconds before hiding the modal and redirecting
+        setTimeout(function () {
+          modal.style.display = "none"; // Hide the modal after 2 seconds
+
+          // Redirect to a different URL after the modal is hidden
+          window.location.href = "http://localhost:5000/"; // Change the URL to the desired one
+        }, 5000); // 2000 milliseconds = 2 seconds
+      }
+    </script>
+  </body>
+</html>
