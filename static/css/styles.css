@@ -1,0 +1,109 @@
+/* General body styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 50px 20px;
+}
+
+/* Form container */
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Input file styling */
+input[type="file"] {
+    border: 2px dashed #4CAF50;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #45a049;
+}
+
+/* Button styling */
+button {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Image preview */
+img#output {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Links */
+a {
+    display: inline-block;
+    margin-top: 30px;
+    color: #4CAF50;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #45a049;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    button {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+}
